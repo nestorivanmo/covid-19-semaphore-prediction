@@ -1,9 +1,10 @@
 import streamlit as st
-import numpy as np
-from pandas import DataFrame
 import os
+import altair as alt
+import pandas as pd
 import validators
 from url_utils import extract_content
+from timeseries_utils import generate_dataframe
 
 st.set_page_config(
     page_title="COVID Semaphore Prediction",
@@ -56,5 +57,22 @@ else:
     st.stop()
 
 st.markdown("## 🚦 Semaphore prediction")
-data = extract_content(news_url)
-st.write(data)
+#data, date = extract_content(news_url)
+df = generate_dataframe()
+
+def semaphore_condition(val):
+    if val == 0:    return "Green"
+    if val == 1:    return "Yellow"
+    if val == 2:    return "Orange"
+    if val == 3:    return "Red"
+
+def add_format(styler):
+    styler.format(semaphore_condition)
+    return styler
+
+color = {"Green": 'green', 'Yellow': 'yellow', 'Orange':'orange', 'Red':'red'}
+def color_bg(s):
+    return ['background-color: ' + color[s['semaphore']] for _ in s]
+
+df = df.style.apply(color_bg, axis=1)
+st.table(df)

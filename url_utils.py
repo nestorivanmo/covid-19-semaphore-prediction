@@ -23,4 +23,11 @@ def extract_content(url):
     web_url = urllib.request.urlopen(url)
     html = web_url.read()
     soup = BeautifulSoup(html, 'html.parser')
-    return soup.get_text()
+
+    text = soup.get_text()
+    date = ''
+    for i in soup.findAll('time'):
+        if i.has_attr('datetime'):
+            date = i['datetime']
+
+    return text, date
