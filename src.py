@@ -61,6 +61,8 @@ else:
 st.markdown("## 🚦 Semaphore prediction")
 data, date = extract_content(news_url)
 
+st.write(date)
+st.write(data)
 
 transformer_model_name = 'dccuchile/bert-base-spanish-wwm-cased'
 tokenizer = AutoTokenizer.from_pretrained(transformer_model_name)
