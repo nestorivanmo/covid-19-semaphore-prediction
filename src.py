@@ -118,5 +118,6 @@ color = {"Green": 'green', 'Yellow': 'yellow', 'Orange':'orange', 'Red':'red'}
 def color_bg(s):
     return ['background-color: ' + color[s['semaphore']] for _ in s]
 
+
 df = df.style.apply(color_bg, axis=1)
 st.table(df)
