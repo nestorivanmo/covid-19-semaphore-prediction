@@ -5,6 +5,7 @@ import pandas as pd
 import validators
 from url_utils import extract_content
 from timeseries_utils import generate_dataframe
+import torch
 import pandas as pd
 from transformers import pipeline, AutoTokenizer
 
