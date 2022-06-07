@@ -1,9 +1,7 @@
 import streamlit as st
 import numpy as np
 from pandas import DataFrame
-import seaborn as sns
 import os
-import json
 import validators
 from url_utils import extract_content
 
